@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT</title>
+    <link rel="shortcut icon" href="./Assets/favicon-32x32.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+    <main class="h-fit w-full flex items-center">
+
+        <div id="heading" class="sm:hidden">
+            <div class="text-center bg-[#202123]  fixed w-full top-0 text-white py-2">
+                New Chat
+            </div>
+
+        </div>
+
+
+
+        <div id="left" class=" h-screen bg-[#202123] hidden px-12 md:px-2 sm:block">
+
+            <div id="top" class="flex items-center justify-between px-2 my-2 cursor-pointer">
+
+                <div id="newChat"
+                    class="flex items-center border-[1px] border-zinc-600 text-white py-1 rounded pl-4 pr-12 md:pr-20 mr-2 sm:w-full md:pr-[105px]">
+                    <h3 class="text-xl pr-2 pb-1">+</h3>
+                    <h3 class="text-sm">New Chat</h3>
+                </div>
+                <div id="sidebar" class="border-[1px] border-zinc-600 rounded py-6 px-6 md:py-3.5 md:px-3.5"
+                    onmouseover="closeSidebar()" onmouseout="hideCloseSidebar()">
+                    <img src="./Assets/sidebar-removebg-preview.png" alt="not available" class="w-8 md:w-5">
+                </div>
+
+            </div>
+
+
+            <div id="bottom" class="absolute bottom-0 left-0">
+
+                <hr>
+
+                <div id="upgrade"
+                    class=" border-zinc-600 text-white flex transition-all my-1 items-center justify-between hover:bg-slate-800 cursor-pointer px-5 pt-2 pb-2 rounded-lg space-x-14 xl:space-x-8">
+                    <div class="flex items-center">
+                        <div><i class="fa-regular fa-user pr-4"></i></div>
+                        <div class="text-sm">Upgrade to Plus</div>
+                    </div>
+
+                    <span class="bg-[#fae69e] text-black rounded px-0.5 px-1 text-sm cursor-pointer">NEW</span>
+                </div>
+
+                <div id="mail"
+                    class="flex justify-between rounded-lg items-center px-4 py-2 cursor-pointer hover:bg-slate-800 space-x-8">
+                    <div class="bg-[#e94b3e] py-2 px-2.5 w-fit text-white font-sm">XY</div>
+                    <div class="font-black text-white">xyz@gmail.com</div>
+                    <div><img src="./Assets/noun-three-dots-4375442-removebg-preview.png" alt="not available"
+                            class="cursor-pointer w-8 invert"></div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div id="right" class="w-4/5 h-screen flex flex-col items-center relative">
+
+            <div id="gpthead"
+                class="bg-[#ececf1] w-60 h-12 absolute top-[8%] md:top-[5%] left-[40%] sm:left-[50%] px-1 cursor-pointer rounded-md flex items-center justify-between">
+
+                <div id="gpt3" class="bg-white w-28 h-10 rounded flex items-center justify-center space-x-2.5"
+                    onmouseover="gpt3Message()" onmouseout="hideGpt3Message()">
+                    <div><i class="fa-solid fa-bolt text-green-400"></i></div>
+                    <div class="text-sm font-semibold">GPT-3.5</div>
+                    <div><i class="fa-solid fa-circle-info text-gray-500 md:hidden"></i></div>
+                </div>
+
+                <div id="gpt4" class="w-24 h-10 flex items-center justify-center space-x-2.5"
+                    onmouseover="gpt4Message()" onmouseout="hideGpt4Message()">
+                    <div><i class="fa-solid fa-star-of-life text-gray-500 hover:text-purple-400"></i></div>
+                    <div class=" text-sm text-gray-500 font-semibold hover:text-black">GPT-4</div>
+                    <div><i class="fa-solid fa-bag-shopping text-gray-500"></i></div>
+                </div>
+
+            </div>
+
+            <div id="gptm3"
+                class="z-10 bg-white flex flex-col justify-center pl-2 py-4 w-fit hidden rounded-lg border-2 border-gray-200 absolute top-[30%] md:top-[15%] left-[43%]">
+                <h1 class="font-bold w-3/4">Our fastest model, great for most everyday task</h1>
+                <h5 class="text-sm text-gray-400 my-2">Available for Free and Plus users</h5>
+            </div>
+
+            <div id="gptm4"
+                class="z-10 hidden bg-white pl-2 py-4 rounded-lg border-2 border-gray-200 absolute top-[30%] md:top-[15%] left-[50%] w-[80%] md:w-[30%] space-y-4"
+                onmouseover="gpt4Message()" onmouseout="hideGpt4Message()">
+                <h1 class="font-bold w-3/4">Our most capable model, great for tasks that require creativity and advanced
+                    reasoning.</h1>
+                <h5 class="text-xs font-bold text-gray-400">Available exclusively for Plus users</h5>
+                <h5 class="text-xs font-bold text-gray-400">GPT-4 currently have a cap of 25 messages every 3 hours</h5>
+                <button
+                    class="bg-purple-500 text-white font-bold text-sm w-[90%] rounded-lg hover:bg-purple-600 text-center p-4">Upgrade
+                    to ChatGPT Plus</button>
+            </div>
+
+
+
+            <div id="name">
+                <h1
+                    class="text-5xl md:text-4xl font-extrabold text-[#d9d9e3] absolute top-[50%] left-[30%] sm:left-[55%] md:left-[54%] md:top-[15%]">
+                    ChatGPT</h1>
+            </div>
+
+            <div id="suggestion" class="absolute cursor-pointer bottom-1/4 left-[30%]">
+
+                <div class="sm:flex items-center justify-between space-x-2 ">
+
+                    <div id="sugg1"
+                        class="w-[280px] md:w-[330px] h-14 border-2 border-gray-200 rounded-lg text-left px-2 flex justify-between items-center hover:bg-gray-200" onmouseover="suggImage1()" onmouseout="hideSuggImage1()">
+                        <div>
+                            <h1 class="font-bold text-sm text-gray-700">Create a personal webpage for me</h1>
+                            <h5 class="text-gray-500 text-xs">after asking me 3 questions</h5>
+                        </div>
+                        <div>
+                            <img id="suggi1" src="./Assets/noun-paper-plane-120421-removebg-preview.png" alt="" class="w-4 hidden">
+                        </div>
+                    </div>
+
+                    <div id="sugg2"
+                        class="w-[280px] md:w-[330px] h-14 border-2 border-gray-200 rounded-lg text-left px-2 mt-2 flex justify-between items-center hover:bg-gray-200" onmouseover="suggImage2()" onmouseout="hideSuggImage2()">
+
+                        <div>
+                            <h1 class="font-bold text-sm text-gray-700">Come up with concepts</h1>
+                            <h5 class="text-gray-500 text-xs">for a retro style arcade game</h5>
+                        </div>
+
+                        <div>
+                            <img id="suggi2" src="./Assets/noun-paper-plane-120421-removebg-preview.png" alt="" class="w-4 hidden">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:flex items-center justify-between">
+
+                    <div id="sugg3"
+                        class="w-[280px] md:w-[330px] h-14 border-2 border-gray-200 rounded-lg text-left px-2 mt-2 hidden md:flex items-center justify-between hover:bg-gray-200" onmouseover="suggImage3()" onmouseout="hideSuggImage3()">
+
+                        <div>
+                            <h1 class="font-bold text-sm text-gray-700">Design a database schema</h1>
+                            <h5 class="text-gray-500 text-xs">for an online merch store</h5>
+                        </div>
+
+                        <div>
+                            <img id="suggi3" src="./Assets/noun-paper-plane-120421-removebg-preview.png" alt="" class="w-4 hidden">
+                        </div>
+                    </div>
+
+                    <div id="sugg4"
+                        class="w-[280px] md:w-[330px] h-14 border-2 border-gray-200 rounded-lg text-left px-2 mt-2 hidden md:flex justify-between items-center hover:bg-gray-200" onmouseover="suggImage4()" onmouseout="hideSuggImage4()">
+
+                        <div>
+                        <h1 class="font-bold text-sm text-gray-700">Brainstrom names</h1>
+                        <h5 class="text-gray-500 text-xs">for an orange cat we're adopting from the shelter</h5>
+                    </div>
+
+                    <div>
+                        <img id="suggi4" src="./Assets/noun-paper-plane-120421-removebg-preview.png" alt="" class="w-4 hidden">
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="search"
+                class="cursor-pointer shadow-lg shadow-gray-300 flex items-center justify-between px-2 w-72 sm:w-96 md:w-[42rem]  border-2 border-gray-200 absolute bottom-14 py-1 left-[30%] rounded-xl">
+                <div class=""> <input type="text" placeholder="Send a message" class="outline-0 w-[39rem] py-3"></div>
+                <div><img src="./Assets/noun-paper-plane-120421-removebg-preview.png" alt="" class="w-4"></div>
+            </div>
+
+            <div class="text-xs text-gray-500 w-full md:w-fit absolute bottom-0 sm:bottom-2 md:bottom-4 left-[30%]">Free
+                Research Preview. ChatGPT may produce inaccurate information about people, places, or facts. <span
+                    class="font-semibold text-xs cursor-pointer underline"> ChatGPT August 3 Version</span> </div>
+
+        </div>
+
+
+        <img id="sidebar2" src="./Assets/sidebar-removebg-preview.png" alt=""
+            class=" w-4 cursor-pointer invert fixed top-5 left-5 hidden" onmouseover="openSidebar()"
+            onmouseout="hideOpenSidebar()">
+
+        <div id="close"
+            class="text-white font-bold fixed top-3 left:20 sm:left-28 md:left-[17.5rem] bg-black px-4 py-1 rounded-lg flex justify-center items-center hidden">
+            close sidebar</div>
+
+        <div id="open"
+            class="text-white font-bold fixed top-3.5 left-16 md:left-12 bg-black px-4 py-1 rounded-lg flex justify-center items-center hidden">
+            open sidebar</div>
+
+
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
